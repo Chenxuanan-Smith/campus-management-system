@@ -1,8 +1,9 @@
 package app;
 
+import model.Student;
 import service.StudentService;  //从 service 包中的 StudentSerivce.java 中调取数据
 import service.TeacherService;  //从 service 包中的 TeacherService.java 中调取数据
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // 主程序
@@ -91,8 +92,27 @@ public class Main {
                         }
 
                         if (isVerified) {
-                            System.out.println("正在进入系统……");
-                            break;
+                            System.out.println("请输入你要添加学生的数据（提示按‘0’退出）");
+                            System.out.print("名字：");
+                            String name = sc.next();
+                            System.out.print("学号：");
+                            String studentId = sc.next();
+                            System.out.print("班级：");
+                            String classname = sc.next();
+                            System.out.print("性别：");
+                            String gender = sc.next();
+                            System.out.print("年龄：");
+                            int age = sc.nextInt();
+                            System.out.print("电话：");
+                            String phone = sc.next();
+                            Student newStudent = new Student(name,studentId,classname,gender,age,new ArrayList<>(),phone);
+                            boolean isSuccess = studentService.addStudent(newStudent);
+
+                            if (isSuccess) {
+                                System.out.println("添加成功！");
+                            } else {
+                                System.out.println("添加失败，请重试！");
+                            }
                         }
                     }
                     break;
@@ -119,7 +139,7 @@ public class Main {
                             System.out.println("密码错误，请重试！");
                         } else {
                             System.out.println("密码正确");
-                            isVerified = true;
+                            isVerified2 = true;
                         }
 
                         if (isVerified2) {
@@ -187,12 +207,17 @@ public class Main {
             }
 
             switch (choice) {
-                case 1, 3, 4:
+                case 1:
                     System.out.println("请输入密码：");
-
                     break;
                 case 2:
                     System.out.println("请输入你要查找的教师工号：");
+                    break;
+                case 3:
+                    System.out.println("请输入密码：");
+                    break;
+                case 4:
+                    System.out.println("请输入密码：");
                     break;
                 case 5:
                     System.out.println("返回主页");
