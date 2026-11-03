@@ -75,7 +75,7 @@ public class Main {
                         int pwd = -1;
                         try {
                             pwd = sc.nextInt();
-                        }  catch(Exception e) {
+                        } catch (Exception e) {
                             System.out.println("输入有误，请重新输入！");
                             sc.nextLine();
                             continue;
@@ -89,7 +89,9 @@ public class Main {
                         } else {
                             System.out.println("密码正确");
                             isVerified = true;
+                            break;
                         }
+                    }
 
                         if (isVerified) {
                             System.out.println("请输入你要添加学生的数据（提示按‘0’退出）");
@@ -114,7 +116,6 @@ public class Main {
                                 System.out.println("添加失败，请重试！");
                             }
                         }
-                    }
                     break;
                 case 2:
                     System.out.println("请输入你要查找的学生学号：");
