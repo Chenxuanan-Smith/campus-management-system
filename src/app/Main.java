@@ -119,6 +119,14 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("请输入你要查找的学生学号：");
+                    String studentId = sc.next();
+                    Student foundStudent = studentService.findStudent(studentId);
+                    if (foundStudent != null) {
+                        System.out.println("找到了该学生");
+                        System.out.println(foundStudent);
+                    } else {
+                        System.out.println("该学生不存在");
+                    }
                     break;
                 case 3:
                     System.out.print("请输入密码：");
