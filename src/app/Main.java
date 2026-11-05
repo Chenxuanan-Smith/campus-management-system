@@ -156,12 +156,10 @@ public class Main {
                         if (isVerified2) {
                            System.out.print("请输入你要删除的学生学号：");
                            String studentid = sc.next();
-                           Student student2 = studentService.findStudent(studentid);
                            boolean deletstudent = studentService.removeStudent(studentid);
 
                            if (deletstudent) {
                                System.out.println("已删除该学生");
-                               Student student = studentService.findStudent(studentid);
                            } else {
                                System.out.println("不能删除没有的学生");
                            }
@@ -285,6 +283,40 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("请输入密码：");
+                    boolean isVerified2 = false;
+                    while (true) {
+                        int pwd = -1;
+                        try {
+                            pwd = sc.nextInt();
+                        }  catch(Exception e) {
+                            System.out.println("输入有误，请重新输入！");
+                            sc.nextLine();
+                            continue;
+                        }
+                        if (pwd == 0) {
+                            break;
+                        }
+
+                        if (pwd != 12345) {
+                            System.out.println("密码错误，请重试！");
+                        } else {
+                            System.out.println("密码正确");
+                            isVerified2 = true;
+                        }
+
+                        if (isVerified2) {
+                            System.out.print("请输入你要删除的教师工号：");
+                            String TeacherId = sc.next();
+                            boolean deletteacher = teacherService.removeTeacher(TeacherId);
+
+                            if (deletteacher) {
+                                System.out.println("已删除该教师");
+                            } else {
+                                System.out.println("不能删除没有的教师");
+                            }
+                            break;
+                        }
+                    }
                     break;
                 case 4:
                     System.out.println("请输入密码：");
