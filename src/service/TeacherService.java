@@ -9,20 +9,22 @@ public class TeacherService {
     private ArrayList<Teacher> teachers = new ArrayList<>();
 
     // 添加教师
-    public boolean addTeacher(Teacher teacher) {
-        if (teacher == null) return false;
-
-        if (findTeacher(teacher.getID()) != null){
+    public boolean addTeacher(Teacher newTeacher) {
+        if (newTeacher == null) {
             return false;
         }
-        teachers.add(teacher);
+
+        if (findTeacher(newTeacher.getTeacherId()) != null){
+            return false;
+        }
+        teachers.add(newTeacher);
         return true;
     }
 
     // 按工号查找教师
     public Teacher findTeacher(String ID) {
         for (Teacher t : teachers) {
-            if (t.getID().equals(ID)) {
+            if (t.getTeacherId().equals(ID)) {
                 return t;
             }
         }

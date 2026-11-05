@@ -1,8 +1,9 @@
 package app;
 
 import model.Student;
-import service.StudentService;  //从 service 包中的 StudentSerivce.java 中调取数据
-import service.TeacherService;  //从 service 包中的 TeacherService.java 中调取数据
+import model.Teacher;
+import service.StudentService;
+import service.TeacherService;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -153,7 +154,17 @@ public class Main {
                         }
 
                         if (isVerified2) {
-                            System.out.println("正在进入系统……");
+                           System.out.print("请输入你要删除的学生学号：");
+                           String studentid = sc.next();
+                           Student student2 = studentService.findStudent(studentid);
+                           boolean deletstudent = studentService.removeStudent(studentid);
+
+                           if (deletstudent) {
+                               System.out.println("已删除该学生");
+                               Student student = studentService.findStudent(studentid);
+                           } else {
+                               System.out.println("不能删除没有的学生");
+                           }
                             break;
                         }
                     }
@@ -219,9 +230,58 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("请输入密码：");
+                    boolean isVerified = false;
+                    while (true) {
+                        int pwd = -1;
+                        try {
+                            pwd = sc.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("输入有误，请重新输入！");
+                            sc.nextLine();
+                            continue;
+                        }
+                        if (pwd == 0) {
+                            break;
+                        }
+
+                        if (pwd != 12345) {
+                            System.out.println("密码错误，请重试！");
+                        } else {
+                            System.out.println("密码正确");
+                            isVerified = true;
+                            break;
+                        }
+                    }
+
+                    if (isVerified) {
+                        System.out.println("请输入你要添加教师的数据（提示按‘0’退出）");
+                        System.out.print("名字：");
+                        String name = sc.next();
+                        System.out.print("工号：");
+                        String teacherId = sc.next();
+                        System.out.print("任课课名：");
+                        String courseName = sc.next();
+                        Teacher newTeacher = new Teacher(name,teacherId,courseName);
+                        boolean isSuccess = teacherService.addTeacher(newTeacher);
+
+                        if (isSuccess) {
+                            System.out.println("添加成功！");
+                        } else {
+                            System.out.println("添加失败，请重试！");
+                        }
+                    }
                     break;
                 case 2:
                     System.out.println("请输入你要查找的教师工号：");
+                    String ID = sc.next();
+                    Teacher foundTeacher = teacherService.findTeacher(ID);
+                    if (foundTeacher != null) {
+                        System.out.println("找到了该教师");
+                        System.out.println(foundTeacher);
+                    } else {
+                        System.out.println("该教师不存在");
+                        sc.nextLine();
+                    }
                     break;
                 case 3:
                     System.out.println("请输入密码：");
@@ -238,5 +298,3 @@ public class Main {
         }
     }
 }
-
-
