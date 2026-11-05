@@ -1,4 +1,4 @@
-# 🏫 教务管理系统 (Campus Management System)
+#  教务管理系统 (Campus Management System)
 
 一个基于 Java 纯手写的控制台版教务管理系统，主要用于练习面向对象编程、集合框架、异常处理及 Git 版本控制。
 
