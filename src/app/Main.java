@@ -126,6 +126,7 @@ public class Main {
                         System.out.println(foundStudent);
                     } else {
                         System.out.println("该学生不存在");
+                        sc.nextLine();
                     }
                     break;
                 case 3:
@@ -237,4 +238,5 @@ public class Main {
         }
     }
 }
+
 
